@@ -51,7 +51,9 @@ namespace TextBot
 
             _commands = new Dictionary<string, Func<SocketMessage, string>>()
             {
+#if DEBUG
                 { "/echo", Echo },
+#endif
                 { "/add_contact", AddContact },
                 { "/remove_contact", RemoveContact },
                 { "/list_contacts", ListContacts },
@@ -153,9 +155,9 @@ namespace TextBot
             _isConnected = false;
         }
 
-        #endregion
+#endregion
 
-        #region Events
+#region Events
 
         private async static Task MessageReceived(SocketMessage message)
         {
@@ -257,9 +259,9 @@ namespace TextBot
             }
         }
 
-        #endregion
+#endregion
 
-        #region Helpers
+#region Helpers
 
         private static async Task GetTextChannel()
         {
@@ -341,9 +343,9 @@ namespace TextBot
             await _textChannel.SendMessageAsync($"Message failed to send to: {address.Substring(0, address.IndexOf('@'))}");
         }
 
-        #endregion
+#endregion
 
-        #region Commands
+#region Commands
 
         static string AddContact(SocketMessage msg)
         {
@@ -454,6 +456,6 @@ namespace TextBot
             return toSend;
         }
 
-        #endregion
+#endregion
     }
 }
