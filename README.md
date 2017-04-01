@@ -8,6 +8,13 @@ To use the bot, first you need to create a bot user from the discord website and
 
 After restarting the program, it should start running.
 
+### Config File
+* Token - The bot token you received when creating the bot account
+* GmailUsername - Messages have to go through a gmail acoount currently. This must be the desired email's username
+* GmailPassword - Desired email's password
+* EmailDisplayName - May affect how some carriers see your message. Included just in case. Set this to your name.
+* DiscordChannelId - The channel that the bot will listen on for commands. (I'd go ahead and make a channel and set it so only you and your bot can see it. Use that as your texting channel
+
 ## How To Use
 The bot only uses 4 commands: 
 * /add_contact
