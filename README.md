@@ -2,39 +2,37 @@
 A discord bot written in c# using Discord.Net that allows users to send and receive text messages via discord.
 
 ## Getting Started
-If you want to use the bot out of the box, go ahead and download it here: <link>https://www.dropbox.com/sh/67fhh9d7fy8okdw/AAA2lNpEcCmnf5U6yMGZnUiqa?dl=0</link>
-
-To use the bot, first you need to create a bot user from the discord website and get it's token. Then, run the program once, go to the file specified in the command prompt and fill out the information. (This will likely be found here: C:\Users\Your_Name\AppData\Roaming\discord\TextbotData\TextbotSettings.xml).
-
-After restarting the program, it should start running.
-
-### Config File
-* Token - The bot token you received when creating the bot account
-* GmailUsername - Messages have to go through a gmail acoount currently. This must be the desired email's username
-* GmailPassword - Desired email's password
-* EmailDisplayName - May affect how some carriers see your message. Included just in case. Set this to your name.
-* DiscordChannelId - The channel that the bot will listen on for commands. (I'd go ahead and make a channel and set it so only you and your bot can see it. Use that as your texting channel
+To use the bot, first you need to create a bot user from the discord website. Then on the first time you run the program you'll be asked for the following information
+* token - The bot token you received when creating the bot account.
+* channel id - The id of the discord channel you'd like to use as your texting channel. This channel will be the only one that the bot will listen for commands on.
+* email address - The email adress you wish to associate with this program.
+* email password - The password to that email address. Note all personal information is confidential and stored exclusivley on the users computer.
+* email provider - Which email service you use. This defaults to gmail, however you can customize it. You can use any email server as long as they have support for imap and smtp.
 
 ## How To Use
 The bot only uses 4 commands: 
-* /add_contact
-* /remove_contact
-* /list_contacts
-* /send
+* /add \[contact name\]|\[phone number as email address\]
+* /remove \[contact name\]
+* /list
+* /send \[contact name or phone number\] \[message\]
 
-### add_contact
-* Usage - /add_contact their_name|their_number
-* The | symbol is shift + forward slash (\)
-* their_number is there phone number plus their carriers email extension (see below for list of carrier extensions)
-* Currently their_name cannot have spaces.
+### add
+* Description - Adds a number into your address book.
+* Usage - /add their name|their_number@carrier_email.com
+* their name - The name you'd like them to have when sending or receiving messages.
+* | - shift + forward slash (\)
+* their_number - their phone number plus their carriers email extension (see below for list of carrier extensions)
 
-### remove_contact
-* Usage - /remove_contact contact_name
+### remove
+* Description - Removes a number from your address book.
+* Usage - /remove contact name
 
-### list_contacts
-* Usage - /list_contacts
+### list
+* Description - Lists all of your contacts.
+* Usage - /list
 
 ### send
+* Description - Sends a message to a number or contact.
 * Usage - /send contact_or_carrier_email this is where the message goes.
 * The contact can be one that you've created or just a phone number with their carriers email address
 
@@ -51,7 +49,7 @@ The bot only uses 4 commands:
 These may or may not work outside of America.
 
 ## Example
-* /add_contact friend|0000000000@mms.att.net
+* /add_contact my friend | \0000000000@mms.att.net
 * /send friend Hey friend, it's been awhile since we've talked :)
 
 ## Limitations
