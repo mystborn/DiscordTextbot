@@ -168,7 +168,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Contacts.cs" />
     <Compile Include="Discord\Bot.cs" />
     <Compile Include="Discord\Modules\TextModule.cs" />
