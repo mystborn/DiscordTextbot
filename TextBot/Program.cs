@@ -1,49 +1,36 @@
 ﻿using System;
 using System.Threading.Tasks;
+using TextBot.Discord;
+using TextBot.Email;
 
 namespace TextBot
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            if (Settings.TryInitialize())
-            {
-                Task.Run(async () => await NetworkConnectionListener.Start()).Wait();
+            var runner = new Program();
+            var task = runner.Start();
+            task.GetAwaiter().GetResult();
+        }
 
-                if(!NetworkConnectionListener.IsConnectedToInternet)
-                {
-                    Console.WriteLine("Not connected to internet. Connect to internet to start bot.");
-                }
-
-                Idle.Initialize(Bot.OnEmailReceived);
-                EmailClient.Initialize();
-
-                Task.Run(async () =>
-                {
-                    await Bot.Start();
-                });
-                Task.Run(async () =>
-                {
-                    try
-                    {
-                        await Idle.IdleStart();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine($"Exception thrown in Idle Thread: {e.GetType().Name}");
-                        throw new Exception("Exception thrown in Idle Thread.", e);
-                    }
-                });
-            }
-            else
+        public async Task Start()
+        {
+            try
             {
-                Console.WriteLine($"Please fill out the TextbotSettings.xml file created at:\n {Settings.FolderPath}\nRestart the program when it's completed.");
+                Contacts.Load();
+                await NetworkConnection.Start();
+                Settings.Load();
+                await Bot.Start();
+                EmailClient.Start();
+                EmailListener.Start();
             }
-            while(true)
+            catch (Exception e)
             {
-                Task.Delay(1000).Wait();
+                Console.WriteLine(e);
             }
+
+            await Task.Delay(-1);
         }
     }
 }
